@@ -1,12 +1,23 @@
 <script>
-
-    var consult="/api/consultas/fecha"
+    var consult="/api/consultas/fecha";
+    var actividades="/api/consultas/actividades";
     var app = new Vue({
   el: '#app',
   data: {
     consulta:[],
+    actividades:[],
   },
   methods:{
+    actividad:function(id){
+      //alert(id);
+      axios.post(actividades,{"id":id}).then(response =>{
+            this.actividades=response.data;
+             console.log(this.actividades);
+             $("#insert").modal({backdrop: "static"});       
+             $('#insert').modal('show');
+        });
+              
+    },
     btnconsult:function(){
         var fech=$('#fecha_consult').val();
      

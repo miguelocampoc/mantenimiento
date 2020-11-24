@@ -34,6 +34,7 @@ Route::post('/ordenes/drop', 'OrdenController@destroy');
 Route::post('/consultas/fecha', 'UserController@fecha_consult');
 Route::post('/consultas/maquina', 'UserController@mq_consult');
 Route::post('/consultas/tb', 'UserController@tb_consult');
+Route::post('/consultas/actividades', 'UserController@actividades_fecha');
 
 
 

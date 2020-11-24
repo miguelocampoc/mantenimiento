@@ -14,7 +14,9 @@ var app = new Vue({
       btnconsult:function(){
        let fecha= $('#fecha').val();
        let tb= $('#tb').val();
-            axios.post(consult,{"fecha":fecha,"tb":tb}).then(response =>{
+       let select= $('#selectdate').val();
+
+            axios.post(consult,{"filtrar":select,"fecha":fecha,"tb":tb}).then(response =>{
             this.consulta=response.data;
             if(this.consulta.length!=0){
               console.log(this.consulta);

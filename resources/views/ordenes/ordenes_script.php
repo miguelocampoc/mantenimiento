@@ -4,8 +4,10 @@
     datatable();
 
 
-$('#tb2').val("NINGUNO");
-$('#tb3').val("NINGUNO");
+    $('#tb1select').val("");
+    $('#tb2select').val("");
+    $('#tb3select').val("");
+
  function datatable(){
         
             $('#table_id').DataTable(
@@ -49,6 +51,13 @@ $('#tb3').val("NINGUNO");
           }
 
       }
+      if(tb1!=""){
+            $('#act_tb1').show();
+        }
+        else{
+            $('#act_tb1').hide();
+
+        }
       
     }
     function ontb2(){
@@ -61,6 +70,13 @@ $('#tb3').val("NINGUNO");
                     danger();    
                     }
             }
+            if(tb2!=""){
+            $('#act_tb2').show();
+            }
+            else{
+            $('#act_tb2').hide();
+
+            }
     }
 
     
@@ -69,11 +85,22 @@ $('#tb3').val("NINGUNO");
      let tb2= $('#tb2select').val();
      let tb3= $('#tb3select').val();
         if(tb3==tb1 || tb3==tb2 ){
-            if(tb3!=""){
-                $('#tb3select').prop('selectedIndex',0);
+              if(tb3!=""){
+                 $('#tb3select').prop('selectedIndex',0);
                 danger();
+              }
+            
             }    
-      }
+      
+        if(tb3!=""){
+            $('#act_tb3').show();
+            }
+            else{
+            $('#act_tb3').hide();
+
+            }
+        
+    
         
     }
             

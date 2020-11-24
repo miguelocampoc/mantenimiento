@@ -48,7 +48,8 @@ class OrdenController extends Controller
             'fecha_inicio' => 'required',
             'fecha_final' => 'required',
             'trabajador1'=>'required',
-            'descripcion'=>'required'
+            'descripcion'=>'required',
+            'act_tb1'=>'required'
         ]);
          $orden= orden::create([
             'id_mq'=>$request->input('maquina'),
@@ -58,11 +59,9 @@ class OrdenController extends Controller
         ]);
         
         $data = [
-            ['id_us'=>$request->input('trabajador1'), 'id_or'=>$orden->id],
-            ['id_us'=>$request->input('trabajador2'), 'id_or'=>$orden->id],
-            ['id_us'=>$request->input('trabajador3'), 'id_or'=>$orden->id]
-
-            //...
+            ['id_us'=>$request->input('trabajador1'), 'id_or'=>$orden->id,'act_tb'=>$request->input('act_tb1')],
+            ['id_us'=>$request->input('trabajador2'), 'id_or'=>$orden->id,'act_tb'=>$request->input('act_tb2')],
+            ['id_us'=>$request->input('trabajador3'), 'id_or'=>$orden->id,'act_tb'=>$request->input('act_tb3')]
         ];
         us_or::insert($data); 
        
@@ -107,6 +106,7 @@ class OrdenController extends Controller
             'fecha_inicio' => 'required',
             'fecha_final' => 'required',
             'trabajador1'=>'required',
+            'act_tb1'=>'required',
             'descripcion'=>'required',
         ]);
 
@@ -121,18 +121,21 @@ class OrdenController extends Controller
             if($i==1){
             $us_or=us_or::find($us_or->id);
             $us_or->id_us=$tb1;
+            $us_or->act_tb=$request->input('act_tb1');
             $us_or->save();
             }
            
             if($i==2){
                 $us_or=us_or::find($us_or->id);
                 $us_or->id_us=$tb2;
+                $us_or->act_tb=$request->input('act_tb2');
                 $us_or->save();
             }
            
             if($i==3){
                 $us_or=us_or::find($us_or->id);
                 $us_or->id_us=$tb3;
+                $us_or->act_tb=$request->input('act_tb3');
                 $us_or->save();
             }
             $i++;

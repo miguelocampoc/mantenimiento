@@ -87,6 +87,7 @@ class UserController extends Controller
     }
    
      public function fecha_consult(Request $request){
+    
         $fecha=$request->input('fecha');
         $consulta = DB::table('ordenes')
         ->select('ordenes.id','ordenes.descripcion','maquinas.placa','maquinas.marca','maquinas.modelo')
@@ -96,31 +97,78 @@ class UserController extends Controller
         echo $consulta;
 
      }
+     public function actividades_fecha(Request $request){
+      $id_or=$request->input('id');
+       $consulta=DB::table('us_or')
+       ->select('us_or.act_tb')
+        ->where('us_or.id_or',$id_or)
+        ->get();
+       echo $consulta;
+        
+        
+
+
+     }
     public function mq_consult(Request $request){
-      $fecha= $request->input('fecha');
+       // 2020-11-24
+       $filtrar=$request->input('filtrar');
+
+       if($filtrar=="date"){
+        $fecha= $request->input('fecha');
+       }
+       if($filtrar=="m"){
+        $fecha= $request->input('fecha');
+        $fecha = date( "m", strtotime($fecha ) );
+  
+       }
+       if($filtrar=="d"){
+        $fecha= $request->input('fecha');
+        $fecha = date( "d", strtotime($fecha ) );
+       }
+ 
       $maquina=$request->input('maquina');
       $consulta = DB::table('ordenes')
-      ->select('ordenes.id','maquinas.placa','maquinas.marca','maquinas.modelo','ordenes.descripcion')
+      ->select('ordenes.id','maquinas.placa','maquinas.marca','maquinas.modelo','ordenes.fecha_in')
       ->join('maquinas', 'maquinas.id', '=', 'ordenes.id_mq')
-      ->whereDate('ordenes.fecha_in',$fecha)
+      ->whereMonth('ordenes.fecha_in',$fecha)
+      ->orWhereDate('ordenes.fecha_in',$fecha)
+      ->orWhereday('ordenes.fecha_in',$fecha)
       ->where('maquinas.placa',$maquina)
       ->get();
       echo $consulta;
-     
+ 
     }
     public function tb_consult(Request $request){
-        $fecha= $request->input('fecha');
+
+
+        $filtrar=$request->input('filtrar');
+
+        if($filtrar=="date"){
+         $fecha= $request->input('fecha');
+        }
+        if($filtrar=="m"){
+         $fecha= $request->input('fecha');
+         $fecha = date( "m", strtotime($fecha ) );
+   
+        }
+        if($filtrar=="d"){
+         $fecha= $request->input('fecha');
+         $fecha = date( "d", strtotime($fecha ) );
+        }
         $tb = $request->input('tb');
         $consulta = DB::table('us_or')
-        ->select('ordenes.id','usuarios.nombre','usuarios.apellido','maquinas.placa','maquinas.placa','maquinas.modelo','ordenes.descripcion')
+        ->select('ordenes.id','usuarios.nombre','usuarios.apellido','maquinas.placa','maquinas.modelo','ordenes.fecha_in','us_or.act_tb')
         ->join('usuarios', 'usuarios.id', '=', 'us_or.id_us')
         ->join('ordenes', 'ordenes.id', '=', 'us_or.id_or')
         ->join('maquinas', 'maquinas.id', '=', 'ordenes.id_mq')
+        ->WhereDate('ordenes.fecha_in',$fecha)
+        ->orwhereMonth('ordenes.fecha_in',$fecha)
+        ->orwhereday('ordenes.fecha_in',$fecha)
         ->where('us_or.id_us',$tb)
-        ->whereDate('ordenes.fecha_in',$fecha)
+
         ->get();
         echo $consulta;
-        
+    
       }
 
      public function transform_date($date)

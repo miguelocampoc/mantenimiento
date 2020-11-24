@@ -11,26 +11,38 @@
 @section('content')
 <div id="app">
     <p>Seleccione una fecha y  trabajador y ver las actividades a realizar</p>
-    <label for="exampleFormControlSelect1" >Fecha </label>
-             
-          <input type="date" id="fecha" class=" form-control col-md-3"></input>
+    <label>Fecha:</label>
+    <div class="form-group">
+                 <input type="date" id="fecha" class=" form-control col-md-3"></input>
+    </div>
+             <div class="row">
+                        <div class="col-md-3">
+                                        <label  for="exampleFormControlSelect1"  >Seleccione el trabajdor</label>
 
-                 <div class="form-group">
-                <label  for="exampleFormControlSelect1"  >Seleccione el trabajdor</label>
+                                        <select onchange="CaseOption()" id="tb"  class="form-control"  >
+                                        <option value="" >NINGUNO</option>
 
-                <select onchange="CaseOption()" id="tb"  class="form-control col-md-3"  >
-                <option value="" >NINGUNO</option>
+                                        @foreach($trabajadores as $tb)
 
-                @foreach($trabajadores as $tb)
+                                        <option value="{{$tb->id}}" >{{ $tb->nombre }}</option>
+                                        @endforeach
 
-                <option value="{{$tb->id}}" >{{ $tb->nombre }}</option>
-                @endforeach
-
-                </select>
-                
+                                        </select>
 
 
-            </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                                            <label for="exampleFormControlSelect1" >Filtrar por: </label>
+
+                                                                <select class="form-control col-md-4" id="selectdate">
+                                                                        <option value="date">Fecha</option>
+                                                                        <option value="m">Mes</option>
+                                                                        <option value="d"> Dia</option>
+                                                                </select>
+                            </div> 
+              </div>
+                <br>
      <button @click="btnconsult()" class="btn btn-primary">Consultar</button><br><br>
    
      <table  id="table_tb" style="display:none;" class="table table-striped table-bordered" style="width:100%">
@@ -40,6 +52,7 @@
              <th>nombre</th>
             <th>apellido</th>
             <th>maquina</th>
+            <th>Fecha inicio</th>
             <th>Actividades</th>
            
         </tr>
@@ -52,7 +65,8 @@
               <td>{{consulta.nombre}}</td>
               <td>{{consulta.apellido}}</td>
               <td>{{consulta.placa}}</td>
-              <td>{{consulta.descripcion}}</td>
+              <td>{{consulta.fecha_in}}</td>
+              <td>{{consulta.act_tb}}</td>
               
            </tr>
      @endverbatim

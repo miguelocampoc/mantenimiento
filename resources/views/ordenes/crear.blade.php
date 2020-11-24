@@ -92,16 +92,21 @@
                 </select>
 
             </div>
-      
             @error('trabajador1')
                <p style="color:red"> {{ $message }} </p>
                               
                 @enderror
+            <textarea  id="act_tb1" name="act_tb1"    placeholder="Actividades" class="form-control col-md-3" ></textarea>
+            @error('act_tb1')
+               <p style="color:red">  {{$message}}  </p>
+                              
+                @enderror
+        
             <label>Trabajador2</label>
 
             <div class="form-group">
 
-                <select  onchange="ontb2()" class="form-control col-md-3" id="tb2select" name="trabajador2">
+                <select  onchange="ontb2()" class="form-control col-md-3" id="tb2select" name="trabajador2" >
                 <option value="" >NINGUNO</option>
 
                 @foreach($trabajadores as $trabajador)
@@ -112,6 +117,8 @@
                 </select>
                 
             </div>
+            <textarea id="act_tb2"  name="act_tb2"    placeholder="Actividades" class="form-control col-md-3" ></textarea>
+
             <label>Trabajador3</label>
 
             <div class="form-group">
@@ -126,7 +133,8 @@
 
                 </select>
              </div>
-            
+             <textarea id="act_tb3" name="act_tb3" placeholder="Actividades" class="form-control col-md-3" ></textarea>
+
                 <label>Descripcion</label>
               
                  

@@ -90,6 +90,13 @@
                <p style="color:red"> {{ $message }} </p>
                               
                 @enderror
+
+                <textarea  id="act_tb1" name="act_tb1"    placeholder="Actividades" class="form-control col-md-3" ></textarea>
+            @error('act_tb1')
+               <p style="color:red">  {{$message}}  </p>
+                              
+                @enderror
+
         <label>Trabajador2</label>
             <div class="form-group">
 
@@ -105,6 +112,8 @@
 
             
         </div>
+        <textarea  id="act_tb2" name="act_tb2"    placeholder="Actividades" class="form-control col-md-3" ></textarea>
+
         <label>Trabajador3</label>
 
             <div class="form-group">
@@ -119,6 +128,8 @@
 
                     </select>
             </div>
+            <textarea  id="act_tb3" name="act_tb3"    placeholder="Actividades" class="form-control col-md-3" ></textarea>
+
             <label>Descripcion</label>
                
             <textarea class="form-control col-md-3"  id="descripcion" value="{{old('descripcion')}}" name="descripcion" placeholder="descripcion"></textarea>

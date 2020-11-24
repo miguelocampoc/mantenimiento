@@ -11,10 +11,10 @@
 @section('content')
 <div id="app"> 
     <p>Seleccione una dia y  ver las actividades a realizar</p>
-    <label for="exampleFormControlSelect1" >Fecha</label>
+    <label for="exampleFormControlSelect1" >Dia:</label>
                 <input type="date" id="fecha_consult" class=" form-control col-md-3"></input><br>
      <button @click="btnconsult()" class="btn btn-primary">Consultar</button><br><br>
-     <table  id="table_fecha" style="display:none;" class="table table-striped table-bordered" style="width:100%">
+     <table style="display:none;" id="table_fecha"  class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
              <th>id</th>
@@ -33,18 +33,19 @@
               <td>{{consulta.placa}}</td>
               <td>{{consulta.marca}}</td>
               <td>{{consulta.modelo}}</td>
-              <td>{{consulta.descripcion}}</td>
+              <td><button type="button" class="btn btn-primary"  @click="actividad(consulta.id)"><i class="fas fa-eye"></i> Visualizar</button></td>
               
            </tr>
      @endverbatim
 
      </tbody>
+     @include('consultas.act')
+
 </table>
 
 
 
 </div>
-
 
 @stop
 
@@ -55,17 +56,7 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-2JBCbWoMJPH+Uj7Wq5OLub8E5edWHlTM4ar/YJkZh3plwB2INhhOC3eDoqHm1Za/ZOSksrLlURLoyXVdfQXqwg==" crossorigin="anonymous"></script>
-<script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-            $(function () {
-                $('#datetimepicker2').datetimepicker();
-            });
-        </script>
+
 @include('consultas.fecha_script')
 
 @stop
