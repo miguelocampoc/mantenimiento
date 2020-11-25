@@ -7,6 +7,7 @@ var update="api/usuarios/update";
 //var drop="api/maquinas/drop";
 
     $( "#btninsert" ).click(function() {
+        $('#cedulai').val("");
         $('#namei').val("");
         $('#apellidoi').val("");
         $('#emaili').val("");

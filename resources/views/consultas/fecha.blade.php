@@ -14,13 +14,15 @@
     <label for="exampleFormControlSelect1" >Dia:</label>
                 <input type="date" id="fecha_consult" class=" form-control col-md-3"></input><br>
      <button @click="btnconsult()" class="btn btn-primary">Consultar</button><br><br>
-     <table style="display:none;" id="table_fecha"  class="table table-striped table-bordered" style="width:100%">
+     <table style="display:none;" id="table_fecha"  class="table table-striped table-bordered table_id" style="width:100%">
     <thead>
         <tr>
              <th>id</th>
              <th>placa</th>
             <th>marca</th>
             <th>modelo</th>
+            <th>fecha inicio</th>
+            <th>fecha final</th>
             <th>Actividades</th>
            
         </tr>
@@ -33,6 +35,9 @@
               <td>{{consulta.placa}}</td>
               <td>{{consulta.marca}}</td>
               <td>{{consulta.modelo}}</td>
+              <td>{{consulta.fecha_in}}</td>
+              <td>{{consulta.fecha_fn}}</td>
+
               <td><button type="button" class="btn btn-primary"  @click="actividad(consulta.id)"><i class="fas fa-eye"></i> Visualizar</button></td>
               
            </tr>

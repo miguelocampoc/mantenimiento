@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-    <h1>Fecha</h1>
+    <h1>Maquina</h1>
 @stop
 
 @section('content')
@@ -36,9 +36,10 @@
                                                 <label for="exampleFormControlSelect1" >Filtrar por: </label>
 
                                                     <select class="form-control col-md-4" id="selectdate">
-                                                            <option value="date">Fecha</option>
-                                                            <option value="m">Mes</option>
-                                                            <option value="d"> Dia</option>
+                                                            <option value="d">Dia</option>
+                                                            <option value="m"> Mes</option>
+                                                            <option value="w"> Semana</option>
+
                                                     </select>
                                         </div> 
                                     </div>           
